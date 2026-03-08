@@ -1,6 +1,7 @@
 //KQL - PowerView Function Called via PowerShell
 //Author: Kieran Walsh
 //Date: 08/03/2025
+//Notes: Pulled out functions from hxxps://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1
 let PowerViewGetFunctions = dynamic([
 "Get-Domain",
 "Get-DomainComputer",
