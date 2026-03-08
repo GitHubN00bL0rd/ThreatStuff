@@ -1,3 +1,6 @@
+//KQL - PowerView Function Called via PowerShell
+//Author: Kieran Walsh
+//Date: 08/03/2025
 let PowerViewGetFunctions = dynamic([
 "Get-Domain",
 "Get-DomainComputer",
@@ -61,3 +64,9 @@ let PowerViewGetFunctions = dynamic([
 "Get-WMIRegMountedDrive",
 "Get-WMIRegProxy"
 ]);
+DeviceEvents
+| where ActionType == @"PowerShellCommand"
+| extend AdditionalFields = todynamic(AdditionalFields)
+| extend Command = parse_json(AdditionalFields)["Command"]
+| where Command has_any (PowerViewGetFunctions)
+| project TimeGenerated, DeviceName, ActionType, Command, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessRemoteSessionDeviceName
