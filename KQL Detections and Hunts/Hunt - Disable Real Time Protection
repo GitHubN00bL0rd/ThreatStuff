@@ -1,0 +1,2 @@
+DeviceProcessEvents
+| search "Set-MpPreference -DisableRealtimeMonitoring $true2
