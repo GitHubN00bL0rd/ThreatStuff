@@ -1,2 +1,5 @@
 DeviceFileEvents
-|~
+| where ActionType =~ "FileCreated"
+| extend AdditionalFields = todynamic(AdditionalFields)
+| extend FileType = parse_json(AdditionalFields.FileType)
+| where FileName matches regex @"(?i)\d+_BloodHound\.zip"
